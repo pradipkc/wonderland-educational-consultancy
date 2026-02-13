@@ -1,0 +1,134 @@
+{
+    "hero": {
+        "title": "Unlocking Your Academic Future",
+        "subtitle": "Expert guidance for international students to achieve their educational dreams. With over 15 years of experience, we've helped 5000+ students secure admissions in top universities worldwide.",
+        "stat1_number": "98%",
+        "stat1_text": "Success Rate",
+        "stat2_number": "5000+",
+        "stat2_text": "Students Helped",
+        "stat3_number": "50+",
+        "stat3_text": "Countries"
+    },
+    "services": {
+        "title": "Our Premium Services",
+        "subtitle": "Comprehensive support for your educational journey",
+        "service1": {
+            "title": "University Admissions",
+            "description": "Personalized university selection, application assistance, and scholarship guidance for top institutions worldwide.",
+            "features": [
+                "Profile Evaluation",
+                "University Shortlisting",
+                "Application Review",
+                "Scholarship Assistance"
+            ]
+        },
+        "service2": {
+            "title": "Visa Processing",
+            "description": "End-to-end visa assistance with 98% success rate. Documentation, interview preparation, and post-visa support.",
+            "features": [
+                "Documentation Guidance",
+                "Interview Preparation",
+                "Financial Planning",
+                "Post-Visa Support"
+            ]
+        },
+        "service3": {
+            "title": "Test Preparation",
+            "description": "Expert coaching for IELTS, TOEFL, GRE, GMAT, SAT with proven strategies and mock test series.",
+            "features": [
+                "Custom Study Plans",
+                "Mock Tests & Analysis",
+                "One-on-One Coaching",
+                "Score Improvement"
+            ]
+        }
+    },
+    "testimonials": {
+        "title": "Student Success Stories",
+        "subtitle": "Hear from our students who achieved their dreams with our guidance",
+        "testimonial1": {
+            "name": "Priya Sharma",
+            "course": "Computer Science, Stanford University",
+            "text": "Wonderland Consultancy helped me secure admission to Stanford with a 50% scholarship. Their personalized guidance and mock interviews were invaluable.",
+            "admission": "Admitted: Fall 2023",
+            "achievement": "Scholarship: $40,000"
+        },
+        "testimonial2": {
+            "name": "Rahul Verma",
+            "course": "Medicine, University of Oxford",
+            "text": "The visa processing support was exceptional. They guided me through every document and prepared me for the interview. Got my UK student visa in just 2 weeks!",
+            "admission": "Admitted: Spring 2024",
+            "achievement": "Visa: UK Tier 4"
+        },
+        "testimonial3": {
+            "name": "Anjali Patel",
+            "course": "MBA, Harvard Business School",
+            "text": "From GMAT preparation to interview coaching, Wonderland provided end-to-end support. Their alumni network helped me connect with current students at HBS.",
+            "admission": "Admitted: Fall 2024",
+            "achievement": "GMAT: 750"
+        },
+        "testimonial4": {
+            "name": "Karthik Reddy",
+            "course": "Engineering, MIT",
+            "text": "I improved my IELTS score from 6.5 to 8.0 with their test prep program. The personalized study plan and regular mock tests made all the difference.",
+            "admission": "Admitted: Fall 2023",
+            "achievement": "IELTS: 8.0"
+        },
+        "testimonial5": {
+            "name": "Meera Nair",
+            "course": "PhD, University of Toronto",
+            "text": "Wonderland helped me craft a compelling research proposal and connect with potential supervisors. Got full funding for my PhD in Canada!",
+            "admission": "Admitted: Fall 2024",
+            "achievement": "Funding: Full Scholarship"
+        },
+        "testimonial5.text": "Wonderland helped me craft a compelling research proposal and connect with potential supervisors. Got full funding for my PhD in Canada!"
+    },
+    "partners": {
+        "title": "Our Partner Universities",
+        "subtitle": "Trusted by prestigious institutions worldwide",
+        "region1": {
+            "name": "North America",
+            "universities": "University of Toronto, MIT, Stanford, Harvard"
+        },
+        "region2": {
+            "name": "Europe",
+            "universities": "University of Oxford, ETH Zurich, TU Delft"
+        },
+        "region3": {
+            "name": "Australia/NZ",
+            "universities": "University of Melbourne, ANU, University of Auckland"
+        },
+        "region4": {
+            "name": "Asia",
+            "universities": "NUS, University of Tokyo, HKU, IITs"
+        },
+        "region1.name": "North America",
+        "region3.universities": "University of Melbourne, ANU, University of Auckland",
+        "region4.name": "Asia",
+        "region4.universities": "NUS, University of Tokyo, HKU, IITs"
+    },
+    "about": {
+        "title": "About Wonderland Educational Consultancy",
+        "description": "Founded in 2008, Wonderland Educational Consultancy has been transforming students' lives by guiding them towards their dream universities and careers. Our team of experienced counselors, former admission officers, and visa experts provides personalized support at every step.",
+        "feature1": "Expert Counselors",
+        "feature1_desc": "Former admission officers from top universities",
+        "feature2": "Personalized Approach",
+        "feature2_desc": "Customized strategies for each student",
+        "feature3": "Ethical Practices",
+        "feature3_desc": "Transparent processes, no false promises"
+    },
+    "contact": {
+        "title": "Get In Touch",
+        "subtitle": "Ready to start your educational journey? Contact us for a free consultation.",
+        "address_line1": "05- Kumaripati - Lalitpur City",
+        "address_line2": "Lalitupr, Nepal, 44700",
+        "phone": "+91 98765 43210",
+        "hours": "Mon-Sat, 9AM-7PM",
+        "email1": "wonderland.edu.np@gmail.com",
+        "email2": "admissions@wonderlandedu.com"
+    },
+    "footer": {
+        "about": "Empowering students to achieve their academic dreams through expert guidance and personalized support since 2008.",
+        "copyright": "Wonderland Educational Consultancy Pvt. Ltd."
+    }
+}

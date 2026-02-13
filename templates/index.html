@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wonderland Educational Consultancy Pvt. Ltd.</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/wonderland.jpeg') }}">
+</head>
+
+<body>
+    <!-- Sticky Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <img src="{{ url_for('static', filename='images/wonderland.jpeg') }}"
+                    alt="Wonderland Educational Consultancy Logo">
+                <span class="logo-text">Wonderland<span class="logo-highlight">Education Consultancy</span></span>
+            </a>
+
+            <div class="nav-menu" id="navMenu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#testimonials" class="nav-link">Testimonials</a>
+                <a href="#about" class="nav-link">About Us</a>
+                <a href="#trust" class="nav-link">Partners</a>
+                <a href="#contact" class="nav-link">Contact</a>
+
+                <button class="nav-cta" onclick="openBookingModal()">Book Consultation</button>
+            </div>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">{{ content.hero.title }}</h1>
+                <p class="hero-subtitle">{{ content.hero.subtitle }}</p>
+                <div class="hero-buttons">
+                    <button class="btn-primary" onclick="openBookingModal()">
+                        Start Your Journey <i class="fas fa-arrow-right"></i>
+                    </button>
+                    <a href="#services" class="btn-secondary">
+                        Explore Services <i class="fas fa-graduation-cap"></i>
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">{{ content.hero.stat1_number }}</span>
+                        <span class="stat-text">{{ content.hero.stat1_text }}</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">{{ content.hero.stat2_number }}</span>
+                        <span class="stat-text">{{ content.hero.stat2_text }}</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">{{ content.hero.stat3_number }}</span>
+                        <span class="stat-text">{{ content.hero.stat3_text }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="floating-card">
+                    <div class="card-header">
+                        <i class="fas fa-calendar-check"></i>
+                        <h3>Free Consultation</h3>
+                    </div>
+                    <p>Book a 30-minute free session with our experts</p>
+                    <button class="card-cta" onclick="openBookingModal()">Book Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Carousel Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Student Success Stories</h2>
+                <p class="section-subtitle">Hear from our students who achieved their dreams with our guidance</p>
+            </div>
+
+            <div class="carousel-container">
+                <div class="carousel" id="testimonialCarousel">
+                    <!-- Testimonial 1 -->
+                    <div class="carousel-slide active">
+                        <div class="testimonial-card">
+                            <div class="testimonial-header">
+                                <div class="student-info">
+                                    <div class="student-avatar">
+                                        <i class="fas fa-user-graduate"></i>
+                                    </div>
+                                    <div>
+                                        <<h3>{{ content.testimonials.testimonial1.name }}</h3>
+                                            <p>{{ content.testimonials.testimonial1.course }}</p>
+                                    </div>
+                                </div>
+                                <div class="testimonial-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <p class="testimonial-text">{{ content.testimonials.testimonial1.text }}</p>
+                            <span><i class="fas fa-calendar"></i> {{ content.testimonials.testimonial1.admission
+                                }}</span>
+                            <span><i class="fas fa-award"></i> {{ content.testimonials.testimonial1.achievement
+                                }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="carousel-slide">
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <div class="student-info">
+                                <div class="student-avatar">
+                                    <i class="fas fa-user-md"></i>
+                                </div>
+                                <div>
+                                    <h3>{{ content.testimonials.testimonial2.name }}</h3>
+                                    <p>{{ content.testimonials.testimonial2.course }}</p>
+                                </div>
+                            </div>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                        <p class="testimonial-text">{{ content.testimonials.testimonial2.text }}</p>
+                        <span><i class="fas fa-calendar"></i> {{ content.testimonials.testimonial2.admission }}</span>
+                        <span><i class="fas fa-award"></i> {{ content.testimonials.testimonial2.achievement }}</span>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonial 3 -->
+            <div class="carousel-slide">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="student-info">
+                            <div class="student-avatar">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <div>
+                                <h3>{{ content.testimonials.testimonial3.name }}</h3>
+                                <p>{{ content.testimonials.testimonial3.course }}</p>
+                            </div>
+                        </div>
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">{{ content.testimonials.testimonial3.text }}</p>
+                    <span><i class="fas fa-calendar"></i> {{ content.testimonials.testimonial3.admission }}</span>
+                    <span><i class="fas fa-award"></i> {{ content.testimonials.testimonial3.achievement }}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Testimonial 4 -->
+        <div class="carousel-slide">
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <div class="student-info">
+                        <div class="student-avatar">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div>
+                            <h3>{{ content.testimonials.testimonial1.name }}</h3>
+                            <p>{{ content.testimonials.testimonial1.course }}</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <p class="testimonial-text">{{ content.testimonials.testimonial4.text }}</p>
+                <span><i class="fas fa-calendar"></i> {{ content.testimonials.testimonial4.admission }}</span>
+                <span><i class="fas fa-award"></i> {{ content.testimonials.testimonial4.achievement }}</span>
+            </div>
+        </div>
+        </div>
+
+        <!-- Testimonial 5 -->
+        <div class="carousel-slide">
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <div class="student-info">
+                        <div class="student-avatar">
+                            <i class="fas fa-user-md"></i>
+                        </div>
+                        <div>
+                            <h3>{{ content.testimonials.testimonial5.name }}</h3>
+                            <p>{{ content.testimonials.testimonial5.course }}</p>
+                        </div>
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">{{ content.testimonials.testimonial5.text }}</p>
+                    <span><i class="fas fa-calendar"></i> {{ content.testimonials.testimonial5.admission }}</span>
+                    <span><i class="fas fa-award"></i> {{ content.testimonials.testimonial5.achievement }}</span>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <!-- Carousel Controls -->
+        <button class="carousel-btn prev" onclick="prevSlide()">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="carousel-btn next" onclick="nextSlide()">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+
+        <!-- Carousel Indicators -->
+        <div class="carousel-indicators">
+            <button class="indicator active" onclick="goToSlide(0)"></button>
+            <button class="indicator" onclick="goToSlide(1)"></button>
+            <button class="indicator" onclick="goToSlide(2)"></button>
+            <button class="indicator" onclick="goToSlide(3)"></button>
+            <button class="indicator" onclick="goToSlide(4)"></button>
+        </div>
+        </div>
+
+        <div class="carousel-stats">
+            <div class="carousel-stat">
+                <i class="fas fa-university"></i>
+                <div>
+                    <h3>500+</h3>
+                    <p>Top University Admissions</p>
+                </div>
+            </div>
+            <div class="carousel-stat">
+                <i class="fas fa-star"></i>
+                <div>
+                    <h3>4.9/5</h3>
+                    <p>Average Student Rating</p>
+                </div>
+            </div>
+            <div class="carousel-stat">
+                <i class="fas fa-handshake"></i>
+                <div>
+                    <h3>98%</h3>
+                    <p>Student Satisfaction</p>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">{{ content.services.title }}</h2>
+                <p class="section-subtitle">{{ content.services.subtitle }}</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon university-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <h3>{{ content.services.service1.title }}</h3>
+                    <p>{{ content.services.service1.description }}</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> {{ content.services.service1.features[0] }}</li>
+                        <li><i class="fas fa-check"></i> {{ content.services.service1.features[1] }}</li>
+                        <li><i class="fas fa-check"></i> {{ content.services.service1.features[2] }}</li>
+                        <li><i class="fas fa-check"></i> {{ content.services.service1.features[3] }}</li>
+                    </ul>
+                    <button class="service-cta" onclick="openBookingModal('University Admissions')">
+                        Get Started <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon visa-icon">
+                        <i class="fas fa-passport"></i>
+                    </div>
+                    <h3>{{ content.services.service2.title }}</h3>
+                    <p>{{ content.services.service2.description }}</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> {{ content.services.service2.features[0] }}</li>
+                        <li><i class="fas fa-check"></i> {{ content.services.service2.features[1] }}</li>
+                        <li><i class="fas fa-check"></i> {{ content.services.service2.features[2] }}</li>
+                        <li><i class="fas fa-check"></i> {{ content.services.service2.features[3] }}</li>
+                    </ul>
+                    <button class="service-cta" onclick="openBookingModal('Visa Processing')">
+                        Get Started <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon test-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3>{{ content.services.service3.title }}</h3>
+                    <p>{{ content.services.service3.description }}</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> {{ content.services.service3.features[0] }}</li>
+                        <li><i class="fas fa-check"></i> {{ content.services.service3.features[1] }}</li>
+                        <li><i class="fas fa-check"></i> {{ content.services.service3.features[2] }}</li>
+                        <li><i class="fas fa-check"></i> {{ content.services.service3.features[3] }}</li>
+                    </ul>
+                    <button class="service-cta" onclick="openBookingModal('Test Preparation')">
+                        Get Started <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Bar / Partner Universities -->
+    <section class="trust-bar" id="trust">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">{{ content.partners.title | default('Our Partner Universities') }}</h2>
+                <p class="section-subtitle">{{ content.partners.subtitle | default('Trusted by prestigious institutions worldwide')}}</p>
+            </div>
+
+            <div class="partners-grid">
+                <div class="partner-card">
+                    <div class="partner-logo">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h4>{{ content.partners.region1.name }}</h4>
+                    <p>{{ content.partners.region1.universities }}</p>
+                </div>
+                
+                <div class="partner-card">
+                    <div class="partner-logo">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <h4>{{ content.partners.region2.name }}</h4>
+                    <p>{{ content.partners.region2.universities }}</p>
+                </div>
+                
+                <div class="partner-card">
+                    <div class="partner-logo">
+                        <i class="fas fa-globe-europe"></i>
+                    </div>
+                    <h4>{{ content.partners.region3.name }}</h4>
+                    <p>{{ content.partners.region3.universities }}</p>
+                </div>
+                
+                <div class="partner-card">
+                    <div class="partner-logo">
+                        <i class="fas fa-flag-asia"></i>
+                    </div>
+                    <h4>{{ content.partners.region4.name }}</h4>
+                    <p>{{ content.partners.region4.universities }}</p>
+                </div>
+            </div>
+
+            <div class="success-metrics">
+                <div class="metric">
+                    <span class="metric-number">15+</span>
+                    <span class="metric-text">Years Experience</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-number">98%</span>
+                    <span class="metric-text">Visa Success Rate</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-number">₹5Cr+</span>
+                    <span class="metric-text">Scholarships Secured</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-number">24/7</span>
+                    <span class="metric-text">Student Support</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="about" id="about">
+        <div class="section-container">
+            <div class="about-grid">
+                <div class="about-content">
+                    <h2 class="section-title">{{ content.about.title }}</h2>
+                    <p class="about-description">{{ content.about.description }}</p>
+                    <div class="about-features">
+                        <div class="feature">
+                            <i class="fas fa-award"></i>
+                            <div>
+                                <h4>{{ content.about.feature1 }}</h4>
+                                <p>{{ content.about.feature1_desc }}</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-handshake"></i>
+                            <div>
+                                <h4>{{ content.about.feature2 }}</h4>
+                                <p>{{ content.about.feature2_desc }}</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-shield-alt"></i>
+                            <div>
+                                <h4>{{ content.about.feature3 }}</h4>
+                                <p>{{ content.about.feature3_desc }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="image-frame">
+                        <div class="floating-badge">
+                            <span>5000+ Success Stories</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="contact" id="contact">
+        <div class="section-container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h2 class="section-title">{{ content.contact.title }}</h2>
+                    <p class="contact-subtitle">{{ content.contact.subtitle }}</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Our Office</h4>
+                                <p>{{ content.contact.address_line1 }}</p>
+                                <p>{{ content.contact.address_line2 }}</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Call Us</h4>
+                                <p>{{ content.contact.phone }}</p>
+                                <p>{{ content.contact.hours }}</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email Us</h4>
+                                <p>{{ content.contact.email1 }}</p>
+                                <p>{{ content.contact.email2 }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="contact-form-container">
+                    <form id="contactForm" class="contact-form">
+                        <h3>Send us a Message</h3>
+
+                        <div class="form-group">
+                            <input type="text" id="name" placeholder="Your Full Name" required>
+                            <i class="fas fa-user"></i>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="email" id="email" placeholder="Email Address" required>
+                            <i class="fas fa-envelope"></i>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="tel" id="phone" placeholder="Phone Number" required>
+                            <i class="fas fa-phone"></i>
+                        </div>
+
+                        <div class="form-group">
+                            <select id="service" required>
+                                <option value="" disabled selected>Select Service</option>
+                                <option value="University Admissions">University Admissions</option>
+                                <option value="Visa Processing">Visa Processing</option>
+                                <option value="Test Preparation">Test Preparation</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+
+                        <div class="form-group">
+                            <textarea id="message" placeholder="Your Message / Requirements" rows="4"
+                                required></textarea>
+                            <i class="fas fa-comment"></i>
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            Send Message <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <img src="{{ url_for('static', filename='images/wonderland.jpeg') }}" alt="Wonderland Logo">
+                        <span>Wonderland Educational Consultancy</span>
+                    </div>
+                    <p class="footer-about">{{ content.footer.about }}</p>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#trust">Partners</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Our Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">University Admissions</a></li>
+                        <li><a href="#">Visa Processing</a></li>
+                        <li><a href="#">Test Preparation</a></li>
+                        <li><a href="#">Career Counseling</a></li>
+                        <li><a href="#">Scholarship Guidance</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Subscribe</h4>
+                    <p>Get updates on admissions, scholarships, and deadlines</p>
+                    <div class="newsletter">
+                        <input type="email" placeholder="Your email" id="newsletterEmail">
+                        <button onclick="subscribeNewsletter()">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 {{ content.footer.copyright }}</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Disclaimer</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Booking Modal -->
+    <div class="modal-overlay" id="bookingModal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeBookingModal()">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <div class="modal-header">
+                <h2>Book a Free Consultation</h2>
+                <p>30-minute session with our expert counselors</p>
+            </div>
+
+            <form id="bookingForm" class="modal-form">
+                <div class="form-group">
+                    <input type="text" id="bookingName" placeholder="Full Name" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="email" id="bookingEmail" placeholder="Email Address" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="tel" id="bookingPhone" placeholder="Phone Number" required>
+                </div>
+
+                <div class="form-group">
+                    <select id="bookingService" required>
+                        <option value="" disabled selected>Select Service</option>
+                        <option value="University Admissions">University Admissions</option>
+                        <option value="Visa Processing">Visa Processing</option>
+                        <option value="Test Preparation">Test Preparation</option>
+                        <option value="General Consultation">General Consultation</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <input type="date" id="bookingDate" required>
+                </div>
+
+                <div class="form-group">
+                    <select id="bookingTime" required>
+                        <option value="" disabled selected>Preferred Time</option>
+                        <option value="9:00 AM">9:00 AM</option>
+                        <option value="11:00 AM">11:00 AM</option>
+                        <option value="2:00 PM">2:00 PM</option>
+                        <option value="4:00 PM">4:00 PM</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="modal-submit-btn">
+                    Book Now <i class="fas fa-calendar-check"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Message -->
+    <div class="toast" id="successToast">
+        <div class="toast-content">
+            <i class="fas fa-check-circle"></i>
+            <span id="toastMessage">Action completed successfully!</span>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script>
+        // Carousel functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const indicators = document.querySelectorAll('.indicator');
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            indicators.forEach(ind => ind.classList.remove('active'));
+
+            slides[index].classList.add('active');
+            indicators[index].classList.add('active');
+
+            const carousel = document.querySelector('.carousel');
+            carousel.style.transform = `translateX(-${index * 100}%)`;
+            currentSlide = index;
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function goToSlide(index) {
+            showSlide(index);
+        }
+
+        // Auto advance carousel every 5 seconds
+        setInterval(nextSlide, 5000);
+    </script>
+    <script>
+        // Real-time content updates from admin panel
+        function fetchLatestContent() {
+            fetch('/api/content')
+                .then(response => response.json())
+                .then(data => {
+                    // Update hero section
+                    document.querySelector('.hero-title').textContent = data.hero.title;
+                    document.querySelector('.hero-subtitle').textContent = data.hero.subtitle;
+                    
+                    // Update stats
+                    const stats = document.querySelectorAll('.stat-number');
+                    if(stats.length >= 3) {
+                        stats[0].textContent = data.hero.stat1_number;
+                        stats[1].textContent = data.hero.stat2_number;
+                        stats[2].textContent = data.hero.stat3_number;
+                    }
+                    
+                    const statTexts = document.querySelectorAll('.stat-text');
+                    if(statTexts.length >= 3) {
+                        statTexts[0].textContent = data.hero.stat1_text;
+                        statTexts[1].textContent = data.hero.stat2_text;
+                        statTexts[2].textContent = data.hero.stat3_text;
+                    }
+                    
+                    // Update services
+                    document.querySelector('.services .section-title').textContent = data.services.title;
+                    document.querySelector('.services .section-subtitle').textContent = data.services.subtitle;
+                    
+                    // Update service 1
+                    const serviceCards = document.querySelectorAll('.service-card');
+                    if(serviceCards.length >= 3) {
+                        // Service 1
+                        serviceCards[0].querySelector('h3').textContent = data.services.service1.title;
+                        serviceCards[0].querySelector('p').textContent = data.services.service1.description;
+                        const features1 = serviceCards[0].querySelectorAll('li');
+                        for(let i=0; i<features1.length; i++) {
+                            features1[i].innerHTML = `<i class="fas fa-check"></i> ${data.services.service1.features[i]}`;
+                        }
+                        
+                        // Service 2
+                        serviceCards[1].querySelector('h3').textContent = data.services.service2.title;
+                        serviceCards[1].querySelector('p').textContent = data.services.service2.description;
+                        const features2 = serviceCards[1].querySelectorAll('li');
+                        for(let i=0; i<features2.length; i++) {
+                            features2[i].innerHTML = `<i class="fas fa-check"></i> ${data.services.service2.features[i]}`;
+                        }
+                        
+                        // Service 3
+                        serviceCards[2].querySelector('h3').textContent = data.services.service3.title;
+                        serviceCards[2].querySelector('p').textContent = data.services.service3.description;
+                        const features3 = serviceCards[2].querySelectorAll('li');
+                        for(let i=0; i<features3.length; i++) {
+                            features3[i].innerHTML = `<i class="fas fa-check"></i> ${data.services.service3.features[i]}`;
+                        }
+                    }
+                    
+                    // Update testimonials
+                    document.querySelector('.testimonials .section-title').textContent = data.testimonials.title;
+                    document.querySelector('.testimonials .section-subtitle').textContent = data.testimonials.subtitle;
+                    
+                    // Update testimonial 1
+                    const testimonialCards = document.querySelectorAll('.testimonial-card');
+                    if(testimonialCards.length >= 5) {
+                        // Testimonial 1
+                        testimonialCards[0].querySelector('h3').textContent = data.testimonials.testimonial1.name;
+                        testimonialCards[0].querySelector('.student-info p').textContent = data.testimonials.testimonial1.course;
+                        testimonialCards[0].querySelector('.testimonial-text').textContent = data.testimonials.testimonial1.text;
+                        const footer1 = testimonialCards[0].querySelectorAll('.testimonial-footer span');
+                        footer1[0].innerHTML = `<i class="fas fa-calendar"></i> ${data.testimonials.testimonial1.admission}`;
+                        footer1[1].innerHTML = `<i class="fas fa-award"></i> ${data.testimonials.testimonial1.achievement}`;
+                        
+                        // Testimonial 2
+                        testimonialCards[1].querySelector('h3').textContent = data.testimonials.testimonial2.name;
+                        testimonialCards[1].querySelector('.student-info p').textContent = data.testimonials.testimonial2.course;
+                        testimonialCards[1].querySelector('.testimonial-text').textContent = data.testimonials.testimonial2.text;
+                        const footer2 = testimonialCards[1].querySelectorAll('.testimonial-footer span');
+                        footer2[0].innerHTML = `<i class="fas fa-calendar"></i> ${data.testimonials.testimonial2.admission}`;
+                        footer2[1].innerHTML = `<i class="fas fa-passport"></i> ${data.testimonials.testimonial2.achievement}`;
+                        
+                        // Add more testimonials as needed
+                    }
+                    
+                    // Update partners
+                    document.querySelector('.trust-bar .section-title').textContent = data.partners.title;
+                    document.querySelector('.trust-bar .section-subtitle').textContent = data.partners.subtitle;
+                    
+                    const partnerCards = document.querySelectorAll('.partner-card');
+                    if(partnerCards.length >= 4) {
+                        partnerCards[0].querySelector('h4').textContent = data.partners.region1.name;
+                        partnerCards[0].querySelector('p').textContent = data.partners.region1.universities;
+                        
+                        partnerCards[1].querySelector('h4').textContent = data.partners.region2.name;
+                        partnerCards[1].querySelector('p').textContent = data.partners.region2.universities;
+                        
+                        partnerCards[2].querySelector('h4').textContent = data.partners.region3.name;
+                        partnerCards[2].querySelector('p').textContent = data.partners.region3.universities;
+                        
+                        partnerCards[3].querySelector('h4').textContent = data.partners.region4.name;
+                        partnerCards[3].querySelector('p').textContent = data.partners.region4.universities;
+                    }
+                    
+                    // Update about
+                    document.querySelector('.about .section-title').textContent = data.about.title;
+                    document.querySelector('.about-description').textContent = data.about.description;
+                    
+                    const features = document.querySelectorAll('.feature');
+                    if(features.length >= 3) {
+                        features[0].querySelector('h4').textContent = data.about.feature1;
+                        features[0].querySelector('p').textContent = data.about.feature1_desc;
+                        
+                        features[1].querySelector('h4').textContent = data.about.feature2;
+                        features[1].querySelector('p').textContent = data.about.feature2_desc;
+                        
+                        features[2].querySelector('h4').textContent = data.about.feature3;
+                        features[2].querySelector('p').textContent = data.about.feature3_desc;
+                    }
+                    
+                    // Update contact
+                    document.querySelector('.contact .section-title').textContent = data.contact.title;
+                    document.querySelector('.contact-subtitle').textContent = data.contact.subtitle;
+                    
+                    const contactItems = document.querySelectorAll('.contact-item');
+                    if(contactItems.length >= 3) {
+                        const addressPs = contactItems[0].querySelectorAll('p');
+                        addressPs[0].textContent = data.contact.address_line1;
+                        addressPs[1].textContent = data.contact.address_line2;
+                        
+                        const phonePs = contactItems[1].querySelectorAll('p');
+                        phonePs[0].textContent = data.contact.phone;
+                        phonePs[1].textContent = data.contact.hours;
+                        
+                        const emailPs = contactItems[2].querySelectorAll('p');
+                        emailPs[0].textContent = data.contact.email1;
+                        emailPs[1].textContent = data.contact.email2;
+                    }
+                    
+                    // Update footer
+                    document.querySelector('.footer-about').textContent = data.footer.about;
+                    const footerBottom = document.querySelector('.footer-bottom p');
+                    if(footerBottom) {
+                        footerBottom.innerHTML = `&copy; 2024 ${data.footer.copyright}`;
+                    }
+                })
+                .catch(error => console.error('Error fetching content:', error));
+        }
+        
+        // Auto-refresh content every 30 seconds
+        setInterval(fetchLatestContent, 30000);
+        
+        // Also add this API endpoint to your app.py:
+        // @app.route('/api/content')
+        // def api_content():
+        //     return jsonify(load_content())
+    </script>
+</body>
+
+</html>

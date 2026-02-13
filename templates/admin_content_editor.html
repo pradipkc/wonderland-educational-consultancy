@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content Editor - Wonderland CMS</title>
+    <link rel="stylesheet" href="/static/css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fb;
+        }
+        
+        .admin-container {
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: linear-gradient(180deg, #1e2b4f 0%, #0f1a2f 100%);
+            color: white;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        }
+        
+        .sidebar-brand {
+            padding: 25px 20px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .sidebar-brand i {
+            color: #4cc9f0;
+            font-size: 1.5rem;
+        }
+        
+        .sidebar-nav {
+            padding: 20px 0;
+        }
+        
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 25px;
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: all 0.3s;
+            border-left: 4px solid transparent;
+        }
+        
+        .nav-link i {
+            width: 20px;
+            text-align: center;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border-left-color: #4cc9f0;
+        }
+        
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 280px;
+            padding: 30px;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            background: white;
+            padding: 20px 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .header h1 {
+            font-size: 1.8rem;
+            color: #1e2b4f;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background: #4361ee;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #3046c0;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+        }
+        
+        .btn-success {
+            background: #10b981;
+            color: white;
+        }
+        
+        .btn-warning {
+            background: #f59e0b;
+            color: white;
+        }
+        
+        /* Content Sections */
+        .content-sections {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .content-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+        
+        .card-header {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 20px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .card-header h2 {
+            margin: 0;
+            font-size: 1.3rem;
+            color: #1e2b4f;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card-header h2 i {
+            color: #4361ee;
+        }
+        
+        .card-body {
+            padding: 25px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #1e2b4f;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            background: #f8f9fa;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #4361ee;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+        }
+        
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .feature-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #4361ee;
+        }
+        
+        .feature-item input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            margin-top: 8px;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .testimonial-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+        
+        .save-btn {
+            background: #10b981;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .save-btn:hover {
+            background: #0e9f6e;
+            transform: translateY(-2px);
+        }
+        
+        .reset-btn {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #10b981;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 9999;
+        }
+        
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .toast.error {
+            background: #ef4444;
+        }
+        
+        .stats-badge {
+            background: #4361ee;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-left: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 0;
+                transform: translateX(-100%);
+            }
+            .main-content {
+                margin-left: 0;
+            }
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-brand">
+                <i class="fas fa-cms"></i>
+                <span>Wonderland CMS</span>
+            </div>
+            <div class="sidebar-nav">
+                <a href="/admin/dashboard" class="nav-link">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+                <a href="/admin/content" class="nav-link active">
+                    <i class="fas fa-edit"></i> Content Editor
+                </a>
+                <a href="/admin/contacts" class="nav-link">
+                    <i class="fas fa-envelope"></i> Contacts
+                </a>
+                <a href="/admin/consultations" class="nav-link">
+                    <i class="fas fa-calendar-check"></i> Consultations
+                </a>
+                <a href="/admin/subscribers" class="nav-link">
+                    <i class="fas fa-users"></i> Subscribers
+                </a>
+                <div style="border-top: 1px solid rgba(255,255,255,0.1); margin: 20px 0;"></div>
+                <a href="/" target="_blank" class="nav-link">
+                    <i class="fas fa-external-link-alt"></i> View Website
+                </a>
+                <a href="/admin/logout" class="nav-link">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="header">
+                <h1>
+                    <i class="fas fa-edit" style="color: #4361ee;"></i>
+                    Content Editor
+                </h1>
+                <div>
+                    <a href="/" target="_blank" class="btn btn-primary">
+                        <i class="fas fa-external-link-alt"></i> Preview Website
+                    </a>
+                </div>
+            </div>
+            
+            <div class="content-sections">
+                <!-- Hero Section Editor -->
+                <div class="content-card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-home"></i> Hero Section</h2>
+                        <span class="stats-badge">Live Preview Available</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label>Main Headline</label>
+                            <input type="text" class="form-control" id="hero_title" 
+                                   value="{{ content.hero.title }}" 
+                                   onchange="updateContent('hero', 'title', this.value)">
+                        </div>
+                        <div class="form-group">
+                            <label>Subtitle</label>
+                            <textarea class="form-control" id="hero_subtitle" 
+                                      onchange="updateContent('hero', 'subtitle', this.value)">{{ content.hero.subtitle }}</textarea>
+                        </div>
+                        <div class="features-grid">
+                            <div class="feature-item">
+                                <label>Stat 1 Number</label>
+                                <input type="text" value="{{ content.hero.stat1_number }}" 
+                                       onchange="updateContent('hero', 'stat1_number', this.value)">
+                                <label style="margin-top: 10px;">Stat 1 Text</label>
+                                <input type="text" value="{{ content.hero.stat1_text }}" 
+                                       onchange="updateContent('hero', 'stat1_text', this.value)">
+                            </div>
+                            <div class="feature-item">
+                                <label>Stat 2 Number</label>
+                                <input type="text" value="{{ content.hero.stat2_number }}" 
+                                       onchange="updateContent('hero', 'stat2_number', this.value)">
+                                <label style="margin-top: 10px;">Stat 2 Text</label>
+                                <input type="text" value="{{ content.hero.stat2_text }}" 
+                                       onchange="updateContent('hero', 'stat2_text', this.value)">
+                            </div>
+                            <div class="feature-item">
+                                <label>Stat 3 Number</label>
+                                <input type="text" value="{{ content.hero.stat3_number }}" 
+                                       onchange="updateContent('hero', 'stat3_number', this.value)">
+                                <label style="margin-top: 10px;">Stat 3 Text</label>
+                                <input type="text" value="{{ content.hero.stat3_text }}" 
+                                       onchange="updateContent('hero', 'stat3_text', this.value)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Services Section Editor -->
+                <div class="content-card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-cogs"></i> Services Section</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label>Section Title</label>
+                            <input type="text" class="form-control" value="{{ content.services.title }}" 
+                                   onchange="updateContent('services', 'title', this.value)">
+                        </div>
+                        <div class="form-group">
+                            <label>Section Subtitle</label>
+                            <input type="text" class="form-control" value="{{ content.services.subtitle }}" 
+                                   onchange="updateContent('services', 'subtitle', this.value)">
+                        </div>
+                        
+                        <h3 style="margin: 30px 0 20px; color: #1e2b4f;">Service 1 - University Admissions</h3>
+                        <div class="form-group">
+                            <label>Service Title</label>
+                            <input type="text" class="form-control" value="{{ content.services.service1.title }}" 
+                                   onchange="updateContent('services', 'service1.title', this.value)">
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea class="form-control" 
+                                      onchange="updateContent('services', 'service1.description', this.value)">{{ content.services.service1.description }}</textarea>
+                        </div>
+                        <div class="features-grid">
+                            {% for feature in content.services.service1.features %}
+                            <div class="feature-item">
+                                <label>Feature {{ loop.index }}</label>
+                                <input type="text" value="{{ feature }}" 
+                                       onchange="updateFeature('services.service1.features', {{ loop.index0 }}, this.value)">
+                            </div>
+                            {% endfor %}
+                        </div>
+                        
+                        <h3 style="margin: 30px 0 20px; color: #1e2b4f;">Service 2 - Visa Processing</h3>
+                        <div class="form-group">
+                            <label>Service Title</label>
+                            <input type="text" class="form-control" value="{{ content.services.service2.title }}" 
+                                   onchange="updateContent('services', 'service2.title', this.value)">
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea class="form-control" 
+                                      onchange="updateContent('services', 'service2.description', this.value)">{{ content.services.service2.description }}</textarea>
+                        </div>
+                        <div class="features-grid">
+                            {% for feature in content.services.service2.features %}
+                            <div class="feature-item">
+                                <label>Feature {{ loop.index }}</label>
+                                <input type="text" value="{{ feature }}" 
+                                       onchange="updateFeature('services.service2.features', {{ loop.index0 }}, this.value)">
+                            </div>
+                            {% endfor %}
+                        </div>
+                        
+                        <h3 style="margin: 30px 0 20px; color: #1e2b4f;">Service 3 - Test Preparation</h3>
+                        <div class="form-group">
+                            <label>Service Title</label>
+                            <input type="text" class="form-control" value="{{ content.services.service3.title }}" 
+                                   onchange="updateContent('services', 'service3.title', this.value)">
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea class="form-control" 
+                                      onchange="updateContent('services', 'service3.description', this.value)">{{ content.services.service3.description }}</textarea>
+                        </div>
+                        <div class="features-grid">
+                            {% for feature in content.services.service3.features %}
+                            <div class="feature-item">
+                                <label>Feature {{ loop.index }}</label>
+                                <input type="text" value="{{ feature }}" 
+                                       onchange="updateFeature('services.service3.features', {{ loop.index0 }}, this.value)">
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonials Editor -->
+                <div class="content-card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-comments"></i> Testimonials</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label>Section Title</label>
+                            <input type="text" class="form-control" value="{{ content.testimonials.title }}" 
+                                   onchange="updateContent('testimonials', 'title', this.value)">
+                        </div>
+                        <div class="form-group">
+                            <label>Section Subtitle</label>
+                            <input type="text" class="form-control" value="{{ content.testimonials.subtitle }}" 
+                                   onchange="updateContent('testimonials', 'subtitle', this.value)">
+                        </div>
+                        
+                        <div class="testimonial-grid">
+                            {% for i in range(1, 6) %}
+                            <div class="testimonial-item">
+                                <h4>Testimonial {{ i }}</h4>
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    <input type="text" class="form-control" 
+                                           value="{{ content['testimonials']['testimonial' ~ i].name }}"
+                                           onchange="updateContent('testimonials', 'testimonial{{ i }}.name', this.value)">
+                                </div>
+                                <div class="form-group">
+                                    <label>Course/University</label>
+                                    <input type="text" class="form-control" 
+                                           value="{{ content['testimonials']['testimonial' ~ i].course }}"
+                                           onchange="updateContent('testimonials', 'testimonial{{ i }}.course', this.value)">
+                                </div>
+                                <div class="form-group">
+                                    <label>Testimonial Text</label>
+                                    <textarea class="form-control" 
+                                              onchange="updateContent('testimonials', 'testimonial{{ i }}.text', this.value)">{{ content['testimonials']['testimonial' ~ i].text }}</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Admission</label>
+                                    <input type="text" class="form-control" 
+                                           value="{{ content['testimonials']['testimonial' ~ i].admission }}"
+                                           onchange="updateContent('testimonials', 'testimonial{{ i }}.admission', this.value)">
+                                </div>
+                                <div class="form-group">
+                                    <label>Achievement</label>
+                                    <input type="text" class="form-control" 
+                                           value="{{ content['testimonials']['testimonial' ~ i].achievement }}"
+                                           onchange="updateContent('testimonials', 'testimonial{{ i }}.achievement', this.value)">
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Partners Section -->
+                <div class="content-card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-handshake"></i> Partner Universities</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label>Section Title</label>
+                            <input type="text" class="form-control" value="{{ content.partners.title }}" 
+                                   onchange="updateContent('partners', 'title', this.value)">
+                        </div>
+                        <div class="form-group">
+                            <label>Section Subtitle</label>
+                            <input type="text" class="form-control" value="{{ content.partners.subtitle }}" 
+                                   onchange="updateContent('partners', 'subtitle', this.value)">
+                        </div>
+                        
+                        <div class="features-grid">
+                            {% for i in range(1, 5) %}
+                            <div class="feature-item">
+                                <label>Region {{ i }} Name</label>
+                                <input type="text" value="{{ content['partners']['region' ~ i].name }}"
+                                       onchange="updateContent('partners', 'region{{ i }}.name', this.value)">
+                                <label style="margin-top: 10px;">Universities</label>
+                                <input type="text" value="{{ content['partners']['region' ~ i].universities }}"
+                                       onchange="updateContent('partners', 'region{{ i }}.universities', this.value)">
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- About Section -->
+                <div class="content-card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-info-circle"></i> About Us</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label>Section Title</label>
+                            <input type="text" class="form-control" value="{{ content.about.title }}"
+                                   onchange="updateContent('about', 'title', this.value)">
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea class="form-control" rows="6"
+                                      onchange="updateContent('about', 'description', this.value)">{{ content.about.description }}</textarea>
+                        </div>
+                        
+                        <div class="features-grid">
+                            <div class="feature-item">
+                                <label>Feature 1 Title</label>
+                                <input type="text" value="{{ content.about.feature1 }}"
+                                       onchange="updateContent('about', 'feature1', this.value)">
+                                <label style="margin-top: 10px;">Feature 1 Description</label>
+                                <input type="text" value="{{ content.about.feature1_desc }}"
+                                       onchange="updateContent('about', 'feature1_desc', this.value)">
+                            </div>
+                            <div class="feature-item">
+                                <label>Feature 2 Title</label>
+                                <input type="text" value="{{ content.about.feature2 }}"
+                                       onchange="updateContent('about', 'feature2', this.value)">
+                                <label style="margin-top: 10px;">Feature 2 Description</label>
+                                <input type="text" value="{{ content.about.feature2_desc }}"
+                                       onchange="updateContent('about', 'feature2_desc', this.value)">
+                            </div>
+                            <div class="feature-item">
+                                <label>Feature 3 Title</label>
+                                <input type="text" value="{{ content.about.feature3 }}"
+                                       onchange="updateContent('about', 'feature3', this.value)">
+                                <label style="margin-top: 10px;">Feature 3 Description</label>
+                                <input type="text" value="{{ content.about.feature3_desc }}"
+                                       onchange="updateContent('about', 'feature3_desc', this.value)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Section -->
+                <div class="content-card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-address-book"></i> Contact Information</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label>Section Title</label>
+                            <input type="text" class="form-control" value="{{ content.contact.title }}"
+                                   onchange="updateContent('contact', 'title', this.value)">
+                        </div>
+                        <div class="form-group">
+                            <label>Section Subtitle</label>
+                            <input type="text" class="form-control" value="{{ content.contact.subtitle }}"
+                                   onchange="updateContent('contact', 'subtitle', this.value)">
+                        </div>
+                        
+                        <div class="features-grid">
+                            <div class="feature-item">
+                                <label>Address Line 1</label>
+                                <input type="text" value="{{ content.contact.address_line1 }}"
+                                       onchange="updateContent('contact', 'address_line1', this.value)">
+                                <label style="margin-top: 10px;">Address Line 2</label>
+                                <input type="text" value="{{ content.contact.address_line2 }}"
+                                       onchange="updateContent('contact', 'address_line2', this.value)">
+                            </div>
+                            <div class="feature-item">
+                                <label>Phone Number</label>
+                                <input type="text" value="{{ content.contact.phone }}"
+                                       onchange="updateContent('contact', 'phone', this.value)">
+                                <label style="margin-top: 10px;">Business Hours</label>
+                                <input type="text" value="{{ content.contact.hours }}"
+                                       onchange="updateContent('contact', 'hours', this.value)">
+                            </div>
+                            <div class="feature-item">
+                                <label>Email 1</label>
+                                <input type="email" value="{{ content.contact.email1 }}"
+                                       onchange="updateContent('contact', 'email1', this.value)">
+                                <label style="margin-top: 10px;">Email 2</label>
+                                <input type="email" value="{{ content.contact.email2 }}"
+                                       onchange="updateContent('contact', 'email2', this.value)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Footer Section -->
+                <div class="content-card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-foot"></i> Footer</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label>About Text</label>
+                            <textarea class="form-control" rows="4"
+                                      onchange="updateContent('footer', 'about', this.value)">{{ content.footer.about }}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Copyright Text</label>
+                            <input type="text" class="form-control" value="{{ content.footer.copyright }}"
+                                   onchange="updateContent('footer', 'copyright', this.value)">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button onclick="saveAllChanges()" class="save-btn">
+                        <i class="fas fa-save"></i> Save All Changes
+                    </button>
+                    <button onclick="resetToDefault()" class="reset-btn">
+                        <i class="fas fa-undo"></i> Reset to Default
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Content updated successfully!</span>
+    </div>
+    
+    <script>
+        // Update single content field
+        function updateContent(section, field, value) {
+            fetch('/admin/content/update', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    section: section,
+                    field: field,
+                    value: value
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showToast('Content updated!', 'success');
+                }
+            });
+        }
+        
+        // Update feature in array
+        function updateFeature(path, index, value) {
+            const parts = path.split('.');
+            const section = parts[0];
+            const field = parts.slice(1).join('.');
+            
+            fetch('/admin/content/update', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    section: section,
+                    field: field,
+                    value: value,
+                    index: index
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showToast('Feature updated!', 'success');
+                }
+            });
+        }
+        
+        // Save all changes (manual trigger)
+        function saveAllChanges() {
+            const inputs = document.querySelectorAll('input[onchange], textarea[onchange]');
+            inputs.forEach(input => {
+                if (input.onchange) {
+                    input.onchange();
+                }
+            });
+            showToast('All changes saved!', 'success');
+        }
+        
+        // Reset to default content
+        function resetToDefault() {
+            if (confirm('Are you sure? This will reset all content to default values.')) {
+                // This would require a separate API endpoint
+                // For now, reload the page
+                location.reload();
+            }
+        }
+        
+        // Show toast notification
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            
+            toast.classList.remove('error');
+            if (type === 'error') {
+                toast.classList.add('error');
+            }
+            
+            toastMessage.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Auto-save on input blur
+        document.querySelectorAll('input, textarea').forEach(element => {
+            element.addEventListener('blur', function() {
+                if (this.onchange) {
+                    this.onchange();
+                }
+            });
+        });
+        
+        // Preview changes in real-time
+        document.querySelectorAll('input, textarea').forEach(element => {
+            element.addEventListener('input', function() {
+                // Optional: Show unsaved indicator
+                this.style.borderColor = '#f59e0b';
+            });
+            
+            element.addEventListener('change', function() {
+                this.style.borderColor = '#10b981';
+                setTimeout(() => {
+                    this.style.borderColor = '#e9ecef';
+                }, 1000);
+            });
+        });
+    </script>
+</body>
+</html>

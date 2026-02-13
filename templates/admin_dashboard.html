@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Wonderland Admin</title>
+    <link rel="stylesheet" href="/static/css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="admin-container">
+        <div class="sidebar">
+            <div class="sidebar-brand">
+                <i class="fas fa-graduation-cap"></i> 
+                <span>Wonderland Admin</span>
+            </div>
+            <div class="sidebar-nav">
+                <a href="/admin/dashboard" class="nav-link active">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+                <a href="/admin/content" class="nav-link">
+                    <i class="fas fa-edit"></i> Content Editor
+                </a>
+                <a href="/admin/contacts" class="nav-link">
+                    <i class="fas fa-envelope"></i> Contacts
+                    {% if stats.new_contacts > 0 %}
+                    <span class="badge bg-danger">{{ stats.new_contacts }}</span>
+                    {% endif %}
+                </a>
+                <a href="/admin/consultations" class="nav-link">
+                    <i class="fas fa-calendar-check"></i> Consultations
+                    {% if stats.pending_consultations > 0 %}
+                    <span class="badge bg-warning">{{ stats.pending_consultations }}</span>
+                    {% endif %}
+                </a>
+                <a href="/admin/subscribers" class="nav-link">
+                    <i class="fas fa-users"></i> Subscribers
+                </a>
+                <a href="/" target="_blank" class="nav-link">
+                    <i class="fas fa-external-link-alt"></i> Visit Website
+                </a>
+                <a href="/admin/logout" class="nav-link">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <div class="header">
+                <h1>Dashboard Overview</h1>
+                <div class="header-actions">
+                    <span class="welcome-text">Welcome, Admin</span>
+                    <span class="current-time">{{ now.strftime('%Y-%m-%d %H:%M') }}</span>
+                </div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stats-card">
+                    <div class="stats-icon" style="background: rgba(67, 97, 238, 0.1); color: #4361ee;">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="stat-number">{{ stats.total_contacts }}</div>
+                    <div class="stat-label">Total Contacts</div>
+                </div>
+                
+                <div class="stats-card">
+                    <div class="stats-icon" style="background: rgba(248, 150, 30, 0.1); color: #f8961e;">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="stat-number">{{ stats.total_consultations }}</div>
+                    <div class="stat-label">Consultations</div>
+                </div>
+                
+                <div class="stats-card">
+                    <div class="stats-icon" style="background: rgba(76, 201, 240, 0.1); color: #4cc9f0;">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-number">{{ stats.total_subscribers }}</div>
+                    <div class="stat-label">Subscribers</div>
+                </div>
+                
+                <div class="stats-card">
+                    <div class="stats-icon" style="background: rgba(247, 37, 133, 0.1); color: #f72585;">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <div class="stat-number">{{ stats.new_contacts }}</div>
+                    <div class="stat-label">New Contacts</div>
+                </div>
+            </div>
+            
+            <div class="content-section">
+                <div class="section-header">
+                    <h3>Recent Contact Submissions</h3>
+                    <a href="/admin/contacts" class="btn btn-primary">
+                        <i class="fas fa-list"></i> View All
+                    </a>
+                </div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Service</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if recent_contacts %}
+                                {% for contact in recent_contacts %}
+                                <tr>
+                                    <td>#{{ contact.id }}</td>
+                                    <td><strong>{{ contact.name }}</strong></td>
+                                    <td>{{ contact.email }}</td>
+                                    <td>{{ contact.service }}</td>
+                                    <td>{{ contact.timestamp }}</td>
+                                    <td>
+                                        <span class="status-badge badge-{{ contact.status }}">
+                                            {{ contact.status.upper() }}
+                                        </span>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td colspan="6" class="text-center text-muted py-4">
+                                        No contacts yet. Form submissions will appear here.
+                                    </td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Update current time
+        function updateTime() {
+            const now = new Date();
+            const timeElement = document.querySelector('.current-time');
+            if (timeElement) {
+                timeElement.textContent = now.toLocaleString('en-US', {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+            }
+        }
+        updateTime();
+        setInterval(updateTime, 60000);
+    </script>
+</body>
+</html>
