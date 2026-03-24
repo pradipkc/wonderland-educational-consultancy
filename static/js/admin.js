@@ -362,3 +362,4 @@ $(document).ready(function() {
         Notification.requestPermission();
     }
 });
+

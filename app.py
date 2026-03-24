@@ -2,6 +2,15 @@ from flask import Flask, render_template, request, jsonify, send_from_directory,
 import os
 import json
 from datetime import datetime
+from pymongo import MongoClient
+
+
+client= MongoClient("mongodb+srv://admin:WONDERLAND123@wonderland-cluster.vppw01v.mongodb.net/?appName=wonderland-Cluster")
+db = client["wonderland_db"]
+collection = db["inquiries"]
+
+port = int(os.environ.get("PORT", 10000))
+app.run(host="0.0.0.0", port=port)
 
 app = Flask(__name__)
 app.secret_key = 'wonderland-secret-key-2024'
@@ -211,17 +220,46 @@ def subscribe_newsletter():
     try:
         data = request.json
         email = data.get('email')
+        
+        # Validate email
+        if not email or '@' not in email:
+            return jsonify({
+                'success': False,
+                'message': 'Please enter a valid email address.'
+            }), 400
+        
+        # Check if already subscribed
         if any(sub['email'] == email for sub in newsletter_subscribers):
-            return jsonify({'success': False, 'message': 'Already subscribed!'})
+            return jsonify({
+                'success': False,
+                'message': 'This email is already subscribed!'
+            })
+        
+        # Create new subscriber
         subscriber = {
             'id': len(newsletter_subscribers) + 1,
             'email': email,
             'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         }
+        
+        # Add to list
         newsletter_subscribers.append(subscriber)
-        return jsonify({'success': True, 'message': 'Subscribed successfully!'})
+        
+        # Print confirmation (for debugging)
+        print(f"✓ New subscriber added: {email}")
+        print(f"Total subscribers now: {len(newsletter_subscribers)}")
+        
+        return jsonify({
+            'success': True,
+            'message': 'Thank you for subscribing to our newsletter!'
+        })
+        
     except Exception as e:
-        return jsonify({'success': False, 'message': 'Subscription failed.'}), 500
+        print(f"✗ Newsletter error: {e}")
+        return jsonify({
+            'success': False,
+            'message': 'Subscription failed. Please try again.'
+        }), 500
 
 # ---------- ADMIN PANEL ROUTES ----------
 
@@ -323,6 +361,10 @@ def admin_consultations():
 def admin_subscribers():
     if not check_admin():
         return redirect(url_for('admin_login'))
+    
+    # Print for debugging
+    print(f"Loading subscribers page. Total subscribers: {len(newsletter_subscribers)}")
+    
     return render_template('admin_subscribers.html', subscribers=newsletter_subscribers)
 
 

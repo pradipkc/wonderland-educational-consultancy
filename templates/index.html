@@ -84,46 +84,45 @@
     </section>
 
     <!-- Testimonials Carousel Section -->
-    <section class="testimonials" id="testimonials">
-        <div class="section-container">
-            <div class="section-header">
-                <h2 class="section-title">Student Success Stories</h2>
-                <p class="section-subtitle">Hear from our students who achieved their dreams with our guidance</p>
-            </div>
+<section class="testimonials" id="testimonials">
+    <div class="section-container">
+        <div class="section-header">
+            <h2 class="section-title">{{ content.testimonials.title }}</h2>
+            <p class="section-subtitle">{{ content.testimonials.subtitle }}</p>
+        </div>
 
-            <div class="carousel-container">
-                <div class="carousel" id="testimonialCarousel">
-                    <!-- Testimonial 1 -->
-                    <div class="carousel-slide active">
-                        <div class="testimonial-card">
-                            <div class="testimonial-header">
-                                <div class="student-info">
-                                    <div class="student-avatar">
-                                        <i class="fas fa-user-graduate"></i>
-                                    </div>
-                                    <div>
-                                        <<h3>{{ content.testimonials.testimonial1.name }}</h3>
-                                            <p>{{ content.testimonials.testimonial1.course }}</p>
-                                    </div>
+        <div class="carousel-container">
+            <div class="carousel" id="testimonialCarousel">
+                <!-- Testimonial 1 - Priya Sharma -->
+                <div class="carousel-slide active">
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <div class="student-info">
+                                <div class="student-avatar">
+                                    <i class="fas fa-user-graduate"></i>
                                 </div>
-                                <div class="testimonial-rating">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
+                                <div>
+                                    <h3>{{ content.testimonials.testimonial1.name }}</h3>
+                                    <p>{{ content.testimonials.testimonial1.course }}</p>
                                 </div>
                             </div>
-                            <p class="testimonial-text">{{ content.testimonials.testimonial1.text }}</p>
-                            <span><i class="fas fa-calendar"></i> {{ content.testimonials.testimonial1.admission
-                                }}</span>
-                            <span><i class="fas fa-award"></i> {{ content.testimonials.testimonial1.achievement
-                                }}</span>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <p class="testimonial-text">{{ content.testimonials.testimonial1.text }}</p>
+                        <div class="testimonial-footer">
+                            <span><i class="fas fa-calendar"></i> {{ content.testimonials.testimonial1.admission }}</span>
+                            <span><i class="fas fa-award"></i> {{ content.testimonials.testimonial1.achievement }}</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Testimonial 2 -->
+                <!-- Testimonial 2 - Rahul Verma -->
                 <div class="carousel-slide">
                     <div class="testimonial-card">
                         <div class="testimonial-header">
@@ -145,113 +144,117 @@
                             </div>
                         </div>
                         <p class="testimonial-text">{{ content.testimonials.testimonial2.text }}</p>
-                        <span><i class="fas fa-calendar"></i> {{ content.testimonials.testimonial2.admission }}</span>
-                        <span><i class="fas fa-award"></i> {{ content.testimonials.testimonial2.achievement }}</span>
-
+                        <div class="testimonial-footer">
+                            <span><i class="fas fa-calendar"></i> {{ content.testimonials.testimonial2.admission }}</span>
+                            <span><i class="fas fa-passport"></i> {{ content.testimonials.testimonial2.achievement }}</span>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Testimonial 3 -->
-            <div class="carousel-slide">
-                <div class="testimonial-card">
-                    <div class="testimonial-header">
-                        <div class="student-info">
-                            <div class="student-avatar">
-                                <i class="fas fa-user-tie"></i>
+                <!-- Testimonial 3 - Anjali Patel -->
+                <div class="carousel-slide">
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <div class="student-info">
+                                <div class="student-avatar">
+                                    <i class="fas fa-user-tie"></i>
+                                </div>
+                                <div>
+                                    <h3>{{ content.testimonials.testimonial3.name }}</h3>
+                                    <p>{{ content.testimonials.testimonial3.course }}</p>
+                                </div>
                             </div>
-                            <div>
-                                <h3>{{ content.testimonials.testimonial3.name }}</h3>
-                                <p>{{ content.testimonials.testimonial3.course }}</p>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
                             </div>
                         </div>
-                        <div class="testimonial-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                        <p class="testimonial-text">{{ content.testimonials.testimonial3.text }}</p>
+                        <div class="testimonial-footer">
+                            <span><i class="fas fa-calendar"></i> {{ content.testimonials.testimonial3.admission }}</span>
+                            <span><i class="fas fa-chart-line"></i> {{ content.testimonials.testimonial3.achievement }}</span>
                         </div>
-                    </div>
-                    <p class="testimonial-text">{{ content.testimonials.testimonial3.text }}</p>
-                    <span><i class="fas fa-calendar"></i> {{ content.testimonials.testimonial3.admission }}</span>
-                    <span><i class="fas fa-award"></i> {{ content.testimonials.testimonial3.achievement }}</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Testimonial 4 -->
-        <div class="carousel-slide">
-            <div class="testimonial-card">
-                <div class="testimonial-header">
-                    <div class="student-info">
-                        <div class="student-avatar">
-                            <i class="fas fa-user-graduate"></i>
-                        </div>
-                        <div>
-                            <h3>{{ content.testimonials.testimonial1.name }}</h3>
-                            <p>{{ content.testimonials.testimonial1.course }}</p>
-                        </div>
-                    </div>
-                    <div class="testimonial-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
                     </div>
                 </div>
-                <p class="testimonial-text">{{ content.testimonials.testimonial4.text }}</p>
-                <span><i class="fas fa-calendar"></i> {{ content.testimonials.testimonial4.admission }}</span>
-                <span><i class="fas fa-award"></i> {{ content.testimonials.testimonial4.achievement }}</span>
-            </div>
-        </div>
-        </div>
 
-        <!-- Testimonial 5 -->
-        <div class="carousel-slide">
-            <div class="testimonial-card">
-                <div class="testimonial-header">
-                    <div class="student-info">
-                        <div class="student-avatar">
-                            <i class="fas fa-user-md"></i>
+                <!-- Testimonial 4 - Karthik Reddy -->
+                <div class="carousel-slide">
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <div class="student-info">
+                                <div class="student-avatar">
+                                    <i class="fas fa-user-graduate"></i>
+                                </div>
+                                <div>
+                                    <h3>{{ content.testimonials.testimonial4.name }}</h3>
+                                    <p>{{ content.testimonials.testimonial4.course }}</p>
+                                </div>
+                            </div>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
                         </div>
-                        <div>
-                            <h3>{{ content.testimonials.testimonial5.name }}</h3>
-                            <p>{{ content.testimonials.testimonial5.course }}</p>
-                        </div>
-                        <div class="testimonial-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
+                        <p class="testimonial-text">{{ content.testimonials.testimonial4.text }}</p>
+                        <div class="testimonial-footer">
+                            <span><i class="fas fa-calendar"></i> {{ content.testimonials.testimonial4.admission }}</span>
+                            <span><i class="fas fa-language"></i> {{ content.testimonials.testimonial4.achievement }}</span>
                         </div>
                     </div>
-                    <p class="testimonial-text">{{ content.testimonials.testimonial5.text }}</p>
-                    <span><i class="fas fa-calendar"></i> {{ content.testimonials.testimonial5.admission }}</span>
-                    <span><i class="fas fa-award"></i> {{ content.testimonials.testimonial5.achievement }}</span>
+                </div>
+
+                <!-- Testimonial 5 - Meera Nair -->
+                <div class="carousel-slide">
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <div class="student-info">
+                                <div class="student-avatar">
+                                    <i class="fas fa-user-md"></i>
+                                </div>
+                                <div>
+                                    <h3>{{ content.testimonials.testimonial5.name }}</h3>
+                                    <p>{{ content.testimonials.testimonial5.course }}</p>
+                                </div>
+                            </div>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                        <p class="testimonial-text">{{ content.testimonials.testimonial5.text }}</p>
+                        <div class="testimonial-footer">
+                            <span><i class="fas fa-calendar"></i> {{ content.testimonials.testimonial5.admission }}</span>
+                            <span><i class="fas fa-graduation-cap"></i> {{ content.testimonials.testimonial5.achievement }}</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        </div>
 
-        <!-- Carousel Controls -->
-        <button class="carousel-btn prev" onclick="prevSlide()">
-            <i class="fas fa-chevron-left"></i>
-        </button>
-        <button class="carousel-btn next" onclick="nextSlide()">
-            <i class="fas fa-chevron-right"></i>
-        </button>
+            <!-- Carousel Controls -->
+            <button class="carousel-btn prev" onclick="prevSlide()">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="carousel-btn next" onclick="nextSlide()">
+                <i class="fas fa-chevron-right"></i>
+            </button>
 
-        <!-- Carousel Indicators -->
-        <div class="carousel-indicators">
-            <button class="indicator active" onclick="goToSlide(0)"></button>
-            <button class="indicator" onclick="goToSlide(1)"></button>
-            <button class="indicator" onclick="goToSlide(2)"></button>
-            <button class="indicator" onclick="goToSlide(3)"></button>
-            <button class="indicator" onclick="goToSlide(4)"></button>
-        </div>
+            <!-- Carousel Indicators -->
+            <div class="carousel-indicators">
+                <button class="indicator active" onclick="goToSlide(0)"></button>
+                <button class="indicator" onclick="goToSlide(1)"></button>
+                <button class="indicator" onclick="goToSlide(2)"></button>
+                <button class="indicator" onclick="goToSlide(3)"></button>
+                <button class="indicator" onclick="goToSlide(4)"></button>
+            </div>
         </div>
 
         <div class="carousel-stats">
@@ -277,9 +280,8 @@
                 </div>
             </div>
         </div>
-        </div>
-    </section>
-
+    </div>
+</section>
     <!-- Services Section -->
     <section class="services" id="services">
         <div class="section-container">
@@ -483,8 +485,8 @@
                     </div>
 
                     <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/share/1Goi6Pdinp/?mibextid=wwXIfr" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.tiktok.com/@wonderlandconsultancy?_r=1&_t=ZS-93nomd1dlci" class="social-link"><i class="fab fa-tiktok"></i></a>
                         <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
                         <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
                         <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
@@ -593,6 +595,7 @@
             </div>
         </div>
     </footer>
+    
 
     <!-- Booking Modal -->
     <div class="modal-overlay" id="bookingModal">
@@ -695,151 +698,228 @@
         setInterval(nextSlide, 5000);
     </script>
     <script>
-        // Real-time content updates from admin panel
-        function fetchLatestContent() {
-            fetch('/api/content')
-                .then(response => response.json())
-                .then(data => {
-                    // Update hero section
-                    document.querySelector('.hero-title').textContent = data.hero.title;
-                    document.querySelector('.hero-subtitle').textContent = data.hero.subtitle;
-                    
-                    // Update stats
-                    const stats = document.querySelectorAll('.stat-number');
-                    if(stats.length >= 3) {
-                        stats[0].textContent = data.hero.stat1_number;
-                        stats[1].textContent = data.hero.stat2_number;
-                        stats[2].textContent = data.hero.stat3_number;
-                    }
-                    
-                    const statTexts = document.querySelectorAll('.stat-text');
-                    if(statTexts.length >= 3) {
-                        statTexts[0].textContent = data.hero.stat1_text;
-                        statTexts[1].textContent = data.hero.stat2_text;
-                        statTexts[2].textContent = data.hero.stat3_text;
-                    }
-                    
-                    // Update services
-                    document.querySelector('.services .section-title').textContent = data.services.title;
-                    document.querySelector('.services .section-subtitle').textContent = data.services.subtitle;
-                    
-                    // Update service 1
-                    const serviceCards = document.querySelectorAll('.service-card');
-                    if(serviceCards.length >= 3) {
-                        // Service 1
-                        serviceCards[0].querySelector('h3').textContent = data.services.service1.title;
-                        serviceCards[0].querySelector('p').textContent = data.services.service1.description;
-                        const features1 = serviceCards[0].querySelectorAll('li');
-                        for(let i=0; i<features1.length; i++) {
-                            features1[i].innerHTML = `<i class="fas fa-check"></i> ${data.services.service1.features[i]}`;
-                        }
-                        
-                        // Service 2
-                        serviceCards[1].querySelector('h3').textContent = data.services.service2.title;
-                        serviceCards[1].querySelector('p').textContent = data.services.service2.description;
-                        const features2 = serviceCards[1].querySelectorAll('li');
-                        for(let i=0; i<features2.length; i++) {
-                            features2[i].innerHTML = `<i class="fas fa-check"></i> ${data.services.service2.features[i]}`;
-                        }
-                        
-                        // Service 3
-                        serviceCards[2].querySelector('h3').textContent = data.services.service3.title;
-                        serviceCards[2].querySelector('p').textContent = data.services.service3.description;
-                        const features3 = serviceCards[2].querySelectorAll('li');
-                        for(let i=0; i<features3.length; i++) {
-                            features3[i].innerHTML = `<i class="fas fa-check"></i> ${data.services.service3.features[i]}`;
-                        }
-                    }
-                    
-                    // Update testimonials
-                    document.querySelector('.testimonials .section-title').textContent = data.testimonials.title;
-                    document.querySelector('.testimonials .section-subtitle').textContent = data.testimonials.subtitle;
-                    
-                    // Update testimonial 1
-                    const testimonialCards = document.querySelectorAll('.testimonial-card');
-                    if(testimonialCards.length >= 5) {
-                        // Testimonial 1
-                        testimonialCards[0].querySelector('h3').textContent = data.testimonials.testimonial1.name;
-                        testimonialCards[0].querySelector('.student-info p').textContent = data.testimonials.testimonial1.course;
-                        testimonialCards[0].querySelector('.testimonial-text').textContent = data.testimonials.testimonial1.text;
-                        const footer1 = testimonialCards[0].querySelectorAll('.testimonial-footer span');
-                        footer1[0].innerHTML = `<i class="fas fa-calendar"></i> ${data.testimonials.testimonial1.admission}`;
-                        footer1[1].innerHTML = `<i class="fas fa-award"></i> ${data.testimonials.testimonial1.achievement}`;
-                        
-                        // Testimonial 2
-                        testimonialCards[1].querySelector('h3').textContent = data.testimonials.testimonial2.name;
-                        testimonialCards[1].querySelector('.student-info p').textContent = data.testimonials.testimonial2.course;
-                        testimonialCards[1].querySelector('.testimonial-text').textContent = data.testimonials.testimonial2.text;
-                        const footer2 = testimonialCards[1].querySelectorAll('.testimonial-footer span');
-                        footer2[0].innerHTML = `<i class="fas fa-calendar"></i> ${data.testimonials.testimonial2.admission}`;
-                        footer2[1].innerHTML = `<i class="fas fa-passport"></i> ${data.testimonials.testimonial2.achievement}`;
-                        
-                        // Add more testimonials as needed
-                    }
-                    
-                    // Update partners
-                    document.querySelector('.trust-bar .section-title').textContent = data.partners.title;
-                    document.querySelector('.trust-bar .section-subtitle').textContent = data.partners.subtitle;
-                    
-                    const partnerCards = document.querySelectorAll('.partner-card');
-                    if(partnerCards.length >= 4) {
-                        partnerCards[0].querySelector('h4').textContent = data.partners.region1.name;
-                        partnerCards[0].querySelector('p').textContent = data.partners.region1.universities;
-                        
-                        partnerCards[1].querySelector('h4').textContent = data.partners.region2.name;
-                        partnerCards[1].querySelector('p').textContent = data.partners.region2.universities;
-                        
-                        partnerCards[2].querySelector('h4').textContent = data.partners.region3.name;
-                        partnerCards[2].querySelector('p').textContent = data.partners.region3.universities;
-                        
-                        partnerCards[3].querySelector('h4').textContent = data.partners.region4.name;
-                        partnerCards[3].querySelector('p').textContent = data.partners.region4.universities;
-                    }
-                    
-                    // Update about
-                    document.querySelector('.about .section-title').textContent = data.about.title;
-                    document.querySelector('.about-description').textContent = data.about.description;
-                    
-                    const features = document.querySelectorAll('.feature');
-                    if(features.length >= 3) {
-                        features[0].querySelector('h4').textContent = data.about.feature1;
-                        features[0].querySelector('p').textContent = data.about.feature1_desc;
-                        
-                        features[1].querySelector('h4').textContent = data.about.feature2;
-                        features[1].querySelector('p').textContent = data.about.feature2_desc;
-                        
-                        features[2].querySelector('h4').textContent = data.about.feature3;
-                        features[2].querySelector('p').textContent = data.about.feature3_desc;
-                    }
-                    
-                    // Update contact
-                    document.querySelector('.contact .section-title').textContent = data.contact.title;
-                    document.querySelector('.contact-subtitle').textContent = data.contact.subtitle;
-                    
-                    const contactItems = document.querySelectorAll('.contact-item');
-                    if(contactItems.length >= 3) {
-                        const addressPs = contactItems[0].querySelectorAll('p');
-                        addressPs[0].textContent = data.contact.address_line1;
-                        addressPs[1].textContent = data.contact.address_line2;
-                        
-                        const phonePs = contactItems[1].querySelectorAll('p');
-                        phonePs[0].textContent = data.contact.phone;
-                        phonePs[1].textContent = data.contact.hours;
-                        
-                        const emailPs = contactItems[2].querySelectorAll('p');
-                        emailPs[0].textContent = data.contact.email1;
-                        emailPs[1].textContent = data.contact.email2;
-                    }
-                    
-                    // Update footer
-                    document.querySelector('.footer-about').textContent = data.footer.about;
-                    const footerBottom = document.querySelector('.footer-bottom p');
-                    if(footerBottom) {
-                        footerBottom.innerHTML = `&copy; 2024 ${data.footer.copyright}`;
-                    }
-                })
-                .catch(error => console.error('Error fetching content:', error));
-        }
+       // Real-time content updates from admin panel
+function fetchLatestContent() {
+    fetch('/api/content')
+        .then(response => response.json())
+        .then(data => {
+            console.log("Updating content with:", data); // Debug
+            
+            // ===== HERO SECTION =====
+            if (document.querySelector('.hero-title')) {
+                document.querySelector('.hero-title').textContent = data.hero.title;
+            }
+            if (document.querySelector('.hero-subtitle')) {
+                document.querySelector('.hero-subtitle').textContent = data.hero.subtitle;
+            }
+            
+            // Hero stats
+            const statNumbers = document.querySelectorAll('.stat-number');
+            const statTexts = document.querySelectorAll('.stat-text');
+            if (statNumbers.length >= 3) {
+                statNumbers[0].textContent = data.hero.stat1_number;
+                statNumbers[1].textContent = data.hero.stat2_number;
+                statNumbers[2].textContent = data.hero.stat3_number;
+            }
+            if (statTexts.length >= 3) {
+                statTexts[0].textContent = data.hero.stat1_text;
+                statTexts[1].textContent = data.hero.stat2_text;
+                statTexts[2].textContent = data.hero.stat3_text;
+            }
+            
+            // ===== SERVICES SECTION =====
+            if (document.querySelector('.services .section-title')) {
+                document.querySelector('.services .section-title').textContent = data.services.title;
+            }
+            if (document.querySelector('.services .section-subtitle')) {
+                document.querySelector('.services .section-subtitle').textContent = data.services.subtitle;
+            }
+            
+            // Service cards - Update by position (these are unique per section)
+            const serviceCards = document.querySelectorAll('.service-card');
+            if (serviceCards.length >= 3) {
+                // Service 1
+                serviceCards[0].querySelector('h3').textContent = data.services.service1.title;
+                serviceCards[0].querySelector('p').textContent = data.services.service1.description;
+                const features1 = serviceCards[0].querySelectorAll('li');
+                for(let i=0; i<features1.length; i++) {
+                    features1[i].innerHTML = `<i class="fas fa-check"></i> ${data.services.service1.features[i]}`;
+                }
+                
+                // Service 2
+                serviceCards[1].querySelector('h3').textContent = data.services.service2.title;
+                serviceCards[1].querySelector('p').textContent = data.services.service2.description;
+                const features2 = serviceCards[1].querySelectorAll('li');
+                for(let i=0; i<features2.length; i++) {
+                    features2[i].innerHTML = `<i class="fas fa-check"></i> ${data.services.service2.features[i]}`;
+                }
+                
+                // Service 3
+                serviceCards[2].querySelector('h3').textContent = data.services.service3.title;
+                serviceCards[2].querySelector('p').textContent = data.services.service3.description;
+                const features3 = serviceCards[2].querySelectorAll('li');
+                for(let i=0; i<features3.length; i++) {
+                    features3[i].innerHTML = `<i class="fas fa-check"></i> ${data.services.service3.features[i]}`;
+                }
+            }
+            
+            // ===== TESTIMONIALS SECTION =====
+            if (document.querySelector('.testimonials .section-title')) {
+                document.querySelector('.testimonials .section-title').textContent = data.testimonials.title;
+            }
+            if (document.querySelector('.testimonials .section-subtitle')) {
+                document.querySelector('.testimonials .section-subtitle').textContent = data.testimonials.subtitle;
+            }
+            
+            // Update testimonials by finding them in order
+            const testimonialCards = document.querySelectorAll('.testimonial-card');
+            if (testimonialCards.length >= 5) {
+                // Testimonial 1
+                const t1 = testimonialCards[0];
+                t1.querySelector('h3').textContent = data.testimonials.testimonial1.name;
+                t1.querySelector('.student-info p').textContent = data.testimonials.testimonial1.course;
+                t1.querySelector('.testimonial-text').textContent = data.testimonials.testimonial1.text;
+                const footer1 = t1.querySelectorAll('.testimonial-footer span');
+                if (footer1.length >= 2) {
+                    footer1[0].innerHTML = `<i class="fas fa-calendar"></i> ${data.testimonials.testimonial1.admission}`;
+                    footer1[1].innerHTML = `<i class="fas fa-award"></i> ${data.testimonials.testimonial1.achievement}`;
+                }
+                
+                // Testimonial 2
+                const t2 = testimonialCards[1];
+                t2.querySelector('h3').textContent = data.testimonials.testimonial2.name;
+                t2.querySelector('.student-info p').textContent = data.testimonials.testimonial2.course;
+                t2.querySelector('.testimonial-text').textContent = data.testimonials.testimonial2.text;
+                const footer2 = t2.querySelectorAll('.testimonial-footer span');
+                if (footer2.length >= 2) {
+                    footer2[0].innerHTML = `<i class="fas fa-calendar"></i> ${data.testimonials.testimonial2.admission}`;
+                    footer2[1].innerHTML = `<i class="fas fa-passport"></i> ${data.testimonials.testimonial2.achievement}`;
+                }
+                
+                // Testimonial 3
+                const t3 = testimonialCards[2];
+                t3.querySelector('h3').textContent = data.testimonials.testimonial3.name;
+                t3.querySelector('.student-info p').textContent = data.testimonials.testimonial3.course;
+                t3.querySelector('.testimonial-text').textContent = data.testimonials.testimonial3.text;
+                const footer3 = t3.querySelectorAll('.testimonial-footer span');
+                if (footer3.length >= 2) {
+                    footer3[0].innerHTML = `<i class="fas fa-calendar"></i> ${data.testimonials.testimonial3.admission}`;
+                    footer3[1].innerHTML = `<i class="fas fa-chart-line"></i> ${data.testimonials.testimonial3.achievement}`;
+                }
+                
+                // Testimonial 4
+                const t4 = testimonialCards[3];
+                t4.querySelector('h3').textContent = data.testimonials.testimonial4.name;
+                t4.querySelector('.student-info p').textContent = data.testimonials.testimonial4.course;
+                t4.querySelector('.testimonial-text').textContent = data.testimonials.testimonial4.text;
+                const footer4 = t4.querySelectorAll('.testimonial-footer span');
+                if (footer4.length >= 2) {
+                    footer4[0].innerHTML = `<i class="fas fa-calendar"></i> ${data.testimonials.testimonial4.admission}`;
+                    footer4[1].innerHTML = `<i class="fas fa-language"></i> ${data.testimonials.testimonial4.achievement}`;
+                }
+                
+                // Testimonial 5
+                const t5 = testimonialCards[4];
+                t5.querySelector('h3').textContent = data.testimonials.testimonial5.name;
+                t5.querySelector('.student-info p').textContent = data.testimonials.testimonial5.course;
+                t5.querySelector('.testimonial-text').textContent = data.testimonials.testimonial5.text;
+                const footer5 = t5.querySelectorAll('.testimonial-footer span');
+                if (footer5.length >= 2) {
+                    footer5[0].innerHTML = `<i class="fas fa-calendar"></i> ${data.testimonials.testimonial5.admission}`;
+                    footer5[1].innerHTML = `<i class="fas fa-graduation-cap"></i> ${data.testimonials.testimonial5.achievement}`;
+                }
+            }
+            
+            // ===== PARTNERS SECTION =====
+            if (document.querySelector('.trust-bar .section-title')) {
+                document.querySelector('.trust-bar .section-title').textContent = data.partners.title;
+            }
+            if (document.querySelector('.trust-bar .section-subtitle')) {
+                document.querySelector('.trust-bar .section-subtitle').textContent = data.partners.subtitle;
+            }
+            
+            const partnerCards = document.querySelectorAll('.partner-card');
+            if (partnerCards.length >= 4) {
+                partnerCards[0].querySelector('h4').textContent = data.partners.region1.name;
+                partnerCards[0].querySelector('p').textContent = data.partners.region1.universities;
+                
+                partnerCards[1].querySelector('h4').textContent = data.partners.region2.name;
+                partnerCards[1].querySelector('p').textContent = data.partners.region2.universities;
+                
+                partnerCards[2].querySelector('h4').textContent = data.partners.region3.name;
+                partnerCards[2].querySelector('p').textContent = data.partners.region3.universities;
+                
+                partnerCards[3].querySelector('h4').textContent = data.partners.region4.name;
+                partnerCards[3].querySelector('p').textContent = data.partners.region4.universities;
+            }
+            
+            // ===== ABOUT SECTION (Using IDs) =====
+            if (document.getElementById('about-title')) {
+                document.getElementById('about-title').textContent = data.about.title;
+            }
+            if (document.getElementById('about-description')) {
+                document.getElementById('about-description').textContent = data.about.description;
+            }
+            if (document.getElementById('about-feature1')) {
+                document.getElementById('about-feature1').textContent = data.about.feature1;
+            }
+            if (document.getElementById('about-feature1-desc')) {
+                document.getElementById('about-feature1-desc').textContent = data.about.feature1_desc;
+            }
+            if (document.getElementById('about-feature2')) {
+                document.getElementById('about-feature2').textContent = data.about.feature2;
+            }
+            if (document.getElementById('about-feature2-desc')) {
+                document.getElementById('about-feature2-desc').textContent = data.about.feature2_desc;
+            }
+            if (document.getElementById('about-feature3')) {
+                document.getElementById('about-feature3').textContent = data.about.feature3;
+            }
+            if (document.getElementById('about-feature3-desc')) {
+                document.getElementById('about-feature3-desc').textContent = data.about.feature3_desc;
+            }
+            if (document.getElementById('about-badge')) {
+                document.getElementById('about-badge').textContent = "5000+ Success Stories"; // Static or from data
+            }
+            
+            // ===== CONTACT SECTION (Using IDs) =====
+            if (document.getElementById('contact-title')) {
+                document.getElementById('contact-title').textContent = data.contact.title;
+            }
+            if (document.getElementById('contact-subtitle')) {
+                document.getElementById('contact-subtitle').textContent = data.contact.subtitle;
+            }
+            if (document.getElementById('contact-address1')) {
+                document.getElementById('contact-address1').textContent = data.contact.address_line1;
+            }
+            if (document.getElementById('contact-address2')) {
+                document.getElementById('contact-address2').textContent = data.contact.address_line2;
+            }
+            if (document.getElementById('contact-phone')) {
+                document.getElementById('contact-phone').textContent = data.contact.phone;
+            }
+            if (document.getElementById('contact-hours')) {
+                document.getElementById('contact-hours').textContent = data.contact.hours;
+            }
+            if (document.getElementById('contact-email1')) {
+                document.getElementById('contact-email1').textContent = data.contact.email1;
+            }
+            if (document.getElementById('contact-email2')) {
+                document.getElementById('contact-email2').textContent = data.contact.email2;
+            }
+            
+            // ===== FOOTER SECTION (Using IDs) =====
+            if (document.getElementById('footer-about')) {
+                document.getElementById('footer-about').textContent = data.footer.about;
+            }
+            if (document.getElementById('footer-copyright')) {
+                document.getElementById('footer-copyright').innerHTML = `&copy; 2024 ${data.footer.copyright}`;
+            }
+            
+            console.log("Content updated successfully!");
+        })
+        .catch(error => console.error('Error fetching content:', error));
+}
         
         // Auto-refresh content every 30 seconds
         setInterval(fetchLatestContent, 30000);
@@ -848,6 +928,35 @@
         // @app.route('/api/content')
         // def api_content():
         //     return jsonify(load_content())
+    </script>
+    <script>
+        function subscribeNewsletter() {
+            const email = document.getElementById('newsletterEmail').value;
+            
+            if (!email || !email.includes('@') || !email.includes('.')) {
+                alert('Please enter a valid email address');
+                return;
+            }
+            
+            fetch('/subscribe_newsletter', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({email: email})
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(data.message);
+                    document.getElementById('newsletterEmail').value = '';
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => {
+                alert('Error subscribing. Please try again.');
+                console.error('Error:', error);
+            });
+        }
     </script>
 </body>
 

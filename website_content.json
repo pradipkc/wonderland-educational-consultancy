@@ -41,7 +41,11 @@
                 "One-on-One Coaching",
                 "Score Improvement"
             ]
-        }
+        },
+        "service1.description": "Personalized university selection, application assistance, and scholarship guidance for top institutions worldwide.",
+        "service2.description": "End-to-end visa assistance with 98% success rate. Documentation, interview preparation, and post-visa support.",
+        "service3.description": "Expert coaching for IELTS, TOEFL, GRE, GMAT, SAT with proven strategies and mock test series.",
+        "service3.title": "Test Preparation"
     },
     "testimonials": {
         "title": "Student Success Stories",
@@ -81,7 +85,22 @@
             "admission": "Admitted: Fall 2024",
             "achievement": "Funding: Full Scholarship"
         },
-        "testimonial5.text": "Wonderland helped me craft a compelling research proposal and connect with potential supervisors. Got full funding for my PhD in Canada!"
+        "testimonial1.course": "Computer Science, Stanford University",
+        "testimonial1.admission": "Admitted: Fall 2023",
+        "testimonial2.text": "The visa processing support was exceptional. They guided me through every document and prepared me for the interview. Got my UK student visa in just 2 weeks!",
+        "testimonial2.course": "Medicine, University of Oxford",
+        "testimonial2.admission": "Admitted: Spring 2024",
+        "testimonial2.achievement": "Visa: UK Tier 4",
+        "testimonial3.text": "From GMAT preparation to interview coaching, Wonderland provided end-to-end support. Their alumni network helped me connect with current students at HBS.",
+        "testimonial3.achievement": "GMAT: 750",
+        "testimonial4.name": "Karthik Reddy",
+        "testimonial3.admission": "Admitted: Fall 2024",
+        "testimonial4.admission": "Admitted: Fall 2023",
+        "testimonial4.achievement": "IELTS: 8.0",
+        "testimonial5.name": "Meera Nair",
+        "testimonial5.course": "PhD, University of Toronto",
+        "testimonial5.achievement": "Funding: Full Scholarship",
+        "testimonial4.text": "I improved my IELTS score from 6.5 to 8.0 with their test prep program. The personalized study plan and regular mock tests made all the difference."
     },
     "partners": {
         "title": "Our Partner Universities",
@@ -104,8 +123,11 @@
         },
         "region1.name": "North America",
         "region3.universities": "University of Melbourne, ANU, University of Auckland",
+        "region2.universities": "University of Oxford, ETH Zurich, TU Delft",
+        "region4.universities": "NUS, University of Tokyo, HKU, IITs",
         "region4.name": "Asia",
-        "region4.universities": "NUS, University of Tokyo, HKU, IITs"
+        "region3.name": "Australia/NZ",
+        "region2.name": "Europe"
     },
     "about": {
         "title": "About Wonderland Educational Consultancy",
@@ -120,11 +142,11 @@
     "contact": {
         "title": "Get In Touch",
         "subtitle": "Ready to start your educational journey? Contact us for a free consultation.",
-        "address_line1": "05- Kumaripati - Lalitpur City",
+        "address_line1": "05 , Kumaripati, Lalitpur city",
         "address_line2": "Lalitupr, Nepal, 44700",
-        "phone": "+91 98765 43210",
-        "hours": "Mon-Sat, 9AM-7PM",
-        "email1": "wonderland.edu.np@gmail.com",
+        "phone": "+977-015427300",
+        "hours": "Sun-Fri, 9AM-7PM",
+        "email1": "info@wonderlandedu.com",
         "email2": "admissions@wonderlandedu.com"
     },
     "footer": {

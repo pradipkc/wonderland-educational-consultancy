@@ -734,15 +734,7 @@ a {
     box-shadow: var(--shadow-lg);
 }
 
-/* .image-frame img{
-    width: 80%;
-    height: 350px;
-    top: 40px;
-    left: 55px;
-    right: 20px;
-    bottom: 20px;
-    
-} */
+
 
 .floating-badge {
     position: absolute;
