@@ -170,7 +170,7 @@ def index():
 @app.route('/submit_contact', methods=['POST'])
 def submit_contact():
     try:
-        data = request.json
+        data = request.form
         contact = {
             'id': len(contacts_data) + 1,
             'name': data.get('name'),
