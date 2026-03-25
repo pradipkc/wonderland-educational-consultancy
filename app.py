@@ -4,21 +4,30 @@ import json
 from datetime import datetime
 from pymongo import MongoClient
 
-# Initialize the Flask app correctly (ONLY ONCE)
-app = Flask(__name__)
-app.secret_key = os.environ.get("SECRET_KEY", "wonderland-secret-key-2024")
+# Initialize the Flask app correctly
+app = Flask(_name_)
 
-# Use Environment Variable for security
+# Use Environment Variable for security (Follow the Render steps below)
 MONGO_URI = os.environ.get("MONGO_URI", "mongodb+srv://admin:WONDERLAND123@wonderland-cluster.vppw01v.mongodb.net/?appName=wonderland-Cluster")
 
 client = MongoClient(MONGO_URI)
 db = client["wonderland_db"]
 collection = db["inquiries"]
 
+# Your routes and logic go here...
+
+if _name_ == "_main_":
+    # Render uses the 'PORT' environment variable automatically
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
+    
+app = Flask(__name__)
+app.secret_key = 'wonderland-secret-key-2024'
+
 # File-based storage for website content
 CONTENT_FILE = 'website_content.json'
 
-# Default website content (KEPT EXACTLY AS YOU PASTED)
+# Default website content
 DEFAULT_CONTENT = {
     "hero": {
         "title": "Unlocking Your Academic Future",
@@ -134,7 +143,7 @@ DEFAULT_CONTENT = {
     }
 }
 
-# In-memory storage (Note: These clear when Render restarts)
+# Simple in-memory storage for form submissions
 contacts_data = []
 consultations_data = []
 newsletter_subscribers = []
@@ -145,7 +154,9 @@ ADMIN_PASSWORD = 'admin123'
 
 # ---------- CONTENT MANAGEMENT FUNCTIONS ----------
 
+
 def load_content():
+    """Load website content from JSON file"""
     if os.path.exists(CONTENT_FILE):
         try:
             with open(CONTENT_FILE, 'r', encoding='utf-8') as f:
@@ -153,24 +164,29 @@ def load_content():
         except:
             return DEFAULT_CONTENT.copy()
     else:
+        # Create default content file
         save_content(DEFAULT_CONTENT.copy())
         return DEFAULT_CONTENT.copy()
 
+
 def save_content(content):
+    """Save website content to JSON file"""
     with open(CONTENT_FILE, 'w', encoding='utf-8') as f:
         json.dump(content, f, indent=4, ensure_ascii=False)
 
 # ---------- MAIN WEBSITE ROUTES ----------
+
 
 @app.route('/')
 def index():
     content = load_content()
     return render_template('index.html', content=content)
 
-@app.route('/submit_contact', methods=['POST'])
+
+@app.route('/api/form', methods=['POST'])
 def submit_contact():
     try:
-        data = request.form
+        data = request.json
         contact = {
             'id': len(contacts_data) + 1,
             'name': data.get('name'),
@@ -182,11 +198,10 @@ def submit_contact():
             'status': 'new'
         }
         contacts_data.append(contact)
-        # Also saving to MongoDB as you initialized it earlier
-        collection.insert_one(contact)
         return jsonify({'success': True, 'message': 'Thank you! We will contact you within 24 hours.'})
     except Exception as e:
         return jsonify({'success': False, 'message': 'Error submitting form.'}), 500
+
 
 @app.route('/book_consultation', methods=['POST'])
 def book_consultation():
@@ -208,30 +223,59 @@ def book_consultation():
     except Exception as e:
         return jsonify({'success': False, 'message': 'Error booking consultation.'}), 500
 
+
 @app.route('/subscribe_newsletter', methods=['POST'])
 def subscribe_newsletter():
     try:
         data = request.json
         email = data.get('email')
+
+        # Validate email
         if not email or '@' not in email:
-            return jsonify({'success': False, 'message': 'Please enter a valid email.'}), 400
+            return jsonify({
+                'success': False,
+                'message': 'Please enter a valid email address.'
+            }), 400
+
+        # Check if already subscribed
         if any(sub['email'] == email for sub in newsletter_subscribers):
-            return jsonify({'success': False, 'message': 'Already subscribed!'})
-        
+            return jsonify({
+                'success': False,
+                'message': 'This email is already subscribed!'
+            })
+
+        # Create new subscriber
         subscriber = {
             'id': len(newsletter_subscribers) + 1,
             'email': email,
             'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         }
+
+        # Add to list
         newsletter_subscribers.append(subscriber)
-        return jsonify({'success': True, 'message': 'Subscribed successfully!'})
+
+        # Print confirmation (for debugging)
+        print(f"✓ New subscriber added: {email}")
+        print(f"Total subscribers now: {len(newsletter_subscribers)}")
+
+        return jsonify({
+            'success': True,
+            'message': 'Thank you for subscribing to our newsletter!'
+        })
+
     except Exception as e:
-        return jsonify({'success': False, 'message': 'Subscription failed.'}), 500
+        print(f"✗ Newsletter error: {e}")
+        return jsonify({
+            'success': False,
+            'message': 'Subscription failed. Please try again.'
+        }), 500
 
 # ---------- ADMIN PANEL ROUTES ----------
 
+
 def check_admin():
     return session.get('admin_logged_in', False)
+
 
 @app.route('/admin/login', methods=['GET', 'POST'])
 def admin_login():
@@ -243,16 +287,21 @@ def admin_login():
             return redirect(url_for('admin_dashboard'))
     return render_template('admin_login.html')
 
+
 @app.route('/admin/logout')
 def admin_logout():
     session.pop('admin_logged_in', None)
     return redirect(url_for('admin_login'))
 
+
 @app.route('/admin/dashboard')
 def admin_dashboard():
     if not check_admin():
         return redirect(url_for('admin_login'))
+
+    # ADD THIS ONE LINE - Load content for the dashboard
     content = load_content()
+
     stats = {
         'total_contacts': len(contacts_data),
         'total_consultations': len(consultations_data),
@@ -260,8 +309,14 @@ def admin_dashboard():
         'new_contacts': len([c for c in contacts_data if c['status'] == 'new']),
         'pending_consultations': len([c for c in consultations_data if c['status'] == 'pending'])
     }
-    return render_template('admin_dashboard.html', stats=stats, content=content, 
-                           recent_contacts=contacts_data[-5:][::-1] if contacts_data else [], now=datetime.now())
+
+    return render_template('admin_dashboard.html',
+                           stats=stats,
+                           content=content,  # ADD THIS - pass content to template
+                           recent_contacts=contacts_data[-5:][::-
+                                                              1] if contacts_data else [],
+                           now=datetime.now())
+
 
 @app.route('/admin/content/')
 def admin_content():
@@ -270,24 +325,34 @@ def admin_content():
     content = load_content()
     return render_template('admin_content_editor.html', content=content)
 
+
 @app.route('/admin/content/update', methods=['POST'])
 def admin_content_update():
     if not check_admin():
-        return jsonify({'success': False}), 401
+        return jsonify({'success': False, 'message': 'Unauthorized'}), 401
+
     try:
         data = request.json
         current_content = load_content()
-        section, field, value, index = data.get('section'), data.get('field'), data.get('value'), data.get('index')
+
+        # Update nested content
+        section = data.get('section')
+        field = data.get('field')
+        value = data.get('value')
+        index = data.get('index')
+
         if index is not None:
             current_content[section][field][index] = value
         elif field:
             current_content[section][field] = value
         else:
             current_content[section] = value
+
         save_content(current_content)
-        return jsonify({'success': True})
+        return jsonify({'success': True, 'message': 'Content updated successfully!'})
     except Exception as e:
         return jsonify({'success': False, 'message': str(e)}), 500
+
 
 @app.route('/admin/contacts')
 def admin_contacts():
@@ -295,17 +360,25 @@ def admin_contacts():
         return redirect(url_for('admin_login'))
     return render_template('admin_contacts.html', contacts=contacts_data)
 
+
 @app.route('/admin/consultations')
 def admin_consultations():
     if not check_admin():
         return redirect(url_for('admin_login'))
     return render_template('admin_consultations.html', consultations=consultations_data)
 
+
 @app.route('/admin/subscribers')
 def admin_subscribers():
     if not check_admin():
         return redirect(url_for('admin_login'))
+
+    # Print for debugging
+    print(
+        f"Loading subscribers page. Total subscribers: {len(newsletter_subscribers)}")
+
     return render_template('admin_subscribers.html', subscribers=newsletter_subscribers)
+
 
 @app.route('/admin/update_status/<int:contact_id>', methods=['POST'])
 def update_status(contact_id):
@@ -322,27 +395,43 @@ def update_status(contact_id):
     except:
         return jsonify({'success': False}), 500
 
+# Static files
+
+
 @app.route('/static/<path:path>')
 def serve_static(path):
     return send_from_directory('static', path)
 
+
 @app.route('/api/content')
 def api_content():
+    """API endpoint for real-time content updates"""
     return jsonify(load_content())
 
-# ---------- EXECUTION BLOCK ----------
 
 if __name__ == '__main__':
     # Create necessary directories
-    for folder in ['static/css', 'static/js', 'static/images', 'templates']:
-        os.makedirs(folder, exist_ok=True)
-        
+    os.makedirs('static/css', exist_ok=True)
+    os.makedirs('static/js', exist_ok=True)
+    os.makedirs('static/images', exist_ok=True)
+    os.makedirs('templates', exist_ok=True)
+    app.run(host="0.0.0.0", port=port)
+
     # Initialize content file
     if not os.path.exists(CONTENT_FILE):
         save_content(DEFAULT_CONTENT.copy())
 
-    # Setting port for Render
-    port = int(os.environ.get("PORT", 5000))
-    
-    print("🌟 WONDERLAND CMS STARTING 🌟")
-    app.run(host="0.0.0.0", port=port)
+    print("=" * 60)
+    print("🌟 WONDERLAND EDUCATIONAL CONSULTANCY CMS 🌟")
+    print("=" * 60)
+    print("🌐 Website:        http://localhost:5000")
+    print("🔐 Admin Login:    http://localhost:5000/admin/login")
+    print("   👤 Username:    admin")
+    print("   🔑 Password:    admin123")
+    print("-" * 60)
+    print("📝 Content Editor: http://localhost:5000/admin/content")
+    print("📊 Dashboard:      http://localhost:5000/admin/dashboard")
+    print("📋 Contacts:       http://localhost:5000/admin/contacts")
+    print("=" * 60)
+
+    app.run(debug=True, port=5000)
